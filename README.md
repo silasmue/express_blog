@@ -35,7 +35,7 @@ First steps (run all commands in the container, i.e., in the VS Code terminal):
   - Select the database using the command `USE ponyfarm`
   - Create the users table (optional): `CREATE TABLE users(id INT AUTO_INCREMENT PRIMARY KEY, email VARCHAR(255) UNIQUE, password VARCHAR(255), name VARCHAR(255) UNIQUE);`
   - OTHER TABLES: `CREATE TABLE posts(id INT AUTO_INCREMENT PRIMARY KEY, author_id INT, text VARCHAR(1000), title VARCHAR(255), foreign key(author_id) references users(id));`
-  `CREATE TABLE comments(id INT AUTO_INCREMENT PRIMARY KEY, post_id INT, text VARCHAR(1000), foreign key(post_id) references posts(id));`
+  `CREATE TABLE comments(id INT AUTO_INCREMENT PRIMARY KEY, post_id INT, author_id INT, text VARCHAR(1000), foreign key(post_id) references posts(id), foreign key(author_id) references users(id));`
 
   - Insert some data into the users table (optional): `INSERT INTO users (email, password, name) VALUES ('admin@example.com', 'password', 'Admin');`
   - `INSERT INTO posts (author_id, text, title) VALUES (1, 'TESHGJOSHDFGJHGJFDHJFSDJFJDSHFJjdfhhsdajkllfgsdajil', 'Test');`
