@@ -39,10 +39,10 @@ router.get('/post/:id', function(request, response, next) {
     });
 });
 
-// POST {add comment}
+// POST {add comment} // comment author_id
 router.post('/', function(request, response, next) {
-    db.connection.query('INSERT INTO comments (post_id, text) VALUES ('
-      + request.body.post_id + ', \'' + request.body.text + '\');', (err, res) => {
+    db.connection.query('INSERT INTO comments (post_id, author_id, text) VALUES ('
+      + request.body.post_id + ', ' + request.body.author_id + ', \'' + request.body.text + '\');', (err, res) => {
       if (err) {
         console.log(err);
         response.sendStatus(500);
