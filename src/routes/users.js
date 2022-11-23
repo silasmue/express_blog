@@ -46,4 +46,21 @@ router.post('/', function(request, response, next) {
 // PUT { user } to change password
 // auth mit cookie middleware
 
+router.post('/auth', function(request, response, next) {
+  db.connection.query('SELECT * FROM users WHERE name LIKE \'' + request.body.name + '\' AND password LIKE \'' + request.body.password + '\';', (err, res) => {
+    console.log(request.body)
+    if (err) {
+      console.log(err);
+      response.sendStatus(500);
+    }
+    if(res.length == 0) {
+      response.sendStatus(401);
+    }
+    else if(res.length == 1) {
+      response.send(res[0]);
+    }
+    else response.sendStatus(500);
+  });
+});
+
 module.exports = router;

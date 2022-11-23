@@ -39,7 +39,19 @@ router.post('/', function(request, response, next) {
       response.send(res);
     });
 });
+
 // DELETE { post }
+router.delete('/:id', function(request, response, next) {
+  db.connection.query('DELETE FROM posts WHERE id = ' + request.params.id + ';', (err, res) => {
+    if (err) {
+      console.log(err);
+      response.sendStatus(500);
+    }
+
+    response.send(res);
+  });
+});
+
 // PUT { post } to change password
 
 module.exports = router;

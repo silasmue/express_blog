@@ -39,7 +39,7 @@ First steps (run all commands in the container, i.e., in the VS Code terminal):
 
   - Insert some data into the users table (optional): `INSERT INTO users (email, password, name) VALUES ('admin@example.com', 'password', 'Admin');`
   - `INSERT INTO posts (author_id, text, title) VALUES (1, 'TESHGJOSHDFGJHGJFDHJFSDJFJDSHFJjdfhhsdajkllfgsdajil', 'Test');`
-  - `INSERT INTO comments (post_id, text) VALUES (1, 'Test comment');`
+  - `INSERT INTO comments (post_id, text, author_id) VALUES (1, 'Test comment', 1);`
 - Run the NodeJS server (must be closed and opened after each change):
   - Run the command `npm run start`
   - VS Code should automatically forward the web server on the container to your machine (usually port 3000. If it does not work, look it up in VS Code)
