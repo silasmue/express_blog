@@ -28,7 +28,7 @@ router.get('/:id', function(request, response, next) {
 });
 
 // POST {add post}
-router.post('/', function(request, response, next) {
+router.post('/', auth.verifyToken, function(request, response, next) {
     db.connection.query('INSERT INTO posts (author_id, text, title) VALUES ('
       + request.body.author_id + ', \'' + request.body.text + '\', \'' + request.body.title + '\');', (err, res) => {
       if (err) {
@@ -41,7 +41,7 @@ router.post('/', function(request, response, next) {
 });
 
 // DELETE { post }
-router.delete('/:id', function(request, response, next) {
+router.delete('/:id', auth.verifyToken, function(request, response, next) {
   db.connection.query('DELETE FROM posts WHERE id = ' + request.params.id + ';', (err, res) => {
     if (err) {
       console.log(err);
