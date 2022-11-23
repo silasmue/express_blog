@@ -1,6 +1,7 @@
 var express = require('express');
 var db = require('../helpers/db');
 var router = express.Router();
+var auth = require('../helpers/auth');
 
 // TODO
 // GET
