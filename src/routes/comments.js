@@ -7,7 +7,7 @@ var auth = require('../helpers/auth');
 // TODO
 // GET
 router.get('/', function(request, response, next) {
-    db.connection.query('SELECT * FROM comments', (err, res) => {
+    db.connection.query('SELECT comments.id, text, name FROM comments JOIN users ON author_id = users.id', (err, res) => {
       if (err) {
         console.log(err);
         response.sendStatus(500);
@@ -19,7 +19,7 @@ router.get('/', function(request, response, next) {
 
 // GET /:id
 router.get('/:id', function(request, response, next) {
-    db.connection.query('SELECT * FROM comments WHERE id = ' + request.params.id, (err, res) => {
+    db.connection.query('SELECT comments.id, text, name FROM comments JOIN users ON author_id = users.id WHERE id = ' + request.params.id, (err, res) => {
       if (err) {
         console.log(err);
         response.sendStatus(500);
@@ -31,7 +31,7 @@ router.get('/:id', function(request, response, next) {
 
 // GET /:post
 router.get('/post/:id', function(request, response, next) {
-    db.connection.query('SELECT * FROM comments WHERE post_id = ' + request.params.id, (err, res) => {
+    db.connection.query('SELECT comments.id, text, name FROM comments JOIN users ON author_id = users.id WHERE post_id = ' + request.params.id, (err, res) => {
       if (err) {
         console.log(err);
         response.sendStatus(500);
