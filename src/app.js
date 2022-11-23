@@ -31,6 +31,15 @@ app.use('/users', usersRouter);
 app.use('/posts', postsRouter);
 app.use('/comments', commentsRouter);
 
+// express-jwt
+app.use(
+  jwt({
+    secret: "hello world !",
+    algorithms: ["HS256"],
+    credentialsRequired: false,
+  })
+);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
