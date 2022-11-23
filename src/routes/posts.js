@@ -43,13 +43,20 @@ router.post('/', auth.verifyToken, function(request, response, next) {
 
 // DELETE { post }
 router.delete('/:id', auth.verifyToken, function(request, response, next) {
-  db.connection.query('DELETE FROM posts WHERE id = ' + request.params.id + ';', (err, res) => {
+  db.connection.query('DELETE FROM comments WHERE post_id = ' + request.params.id + ';', (err, res) => {
     if (err) {
       console.log(err);
       response.sendStatus(500);
     }
-
     response.send(res);
+    db.connection.query('DELETE FROM posts WHERE id = ' + request.params.id + ';'), (err1, res1) => {
+      if (err1) {
+        console.log(err1);
+        response.sendStatus(500);
+      }
+      console.log('hi')
+      response.send(res1);
+    }
   });
 });
 
