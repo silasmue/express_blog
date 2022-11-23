@@ -19,17 +19,16 @@ router.get('/', auth.verifyToken, function(request, response, next) {
   });
 });
 
-// TODO 
 // GET /:id
 
-router.get('/:id', auth.verifyToken, function(request, response, next) {
+router.get('/:id', function(request, response, next) {
   db.connection.query('SELECT * FROM users WHERE id = ' + request.params.id, (err, res) => {
     if (err) {
       console.log(err);
       response.sendStatus(500);
     }
 
-    response.send(res);
+    response.send(res[0].name);
   });
 });
 
