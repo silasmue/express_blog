@@ -51,15 +51,17 @@ router.post('/', auth.verifyToken, function(request, response, next) {
 // auth mit cookie middleware
 
 router.post('/auth', function(request, response, next) {
-  db.connection.query('SELECT * FROM users WHERE name LIKE \'' + request.body.name + '\' AND password LIKE \'' + request.body.password + '\';', (err, res) => {
+  db.connection.query("SELECT * FROM users WHERE name LIKE '" + request.body.name + "' AND password LIKE '" + request.body.password + "';", (err, res) => {
+    // insecure because of double ': if you use double '"' SQL-injection works
     if (err) {
       console.log(err);
       response.sendStatus(500);
     }
+    console.log(res)
     if(res.length == 0) {
       response.sendStatus(401);
     }
-    else if(res.length == 1) {
+    else  {
       const payload = {
         name: res[0].name,
         password: "secret",
@@ -71,7 +73,7 @@ router.post('/auth', function(request, response, next) {
         token: auth.createToken(payload)
       });
     }
-    else response.sendStatus(500);
+    // else response.sendStatus(500); to make it insecure 2nd security messure
   });
 });
 

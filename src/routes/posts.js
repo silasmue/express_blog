@@ -30,8 +30,8 @@ router.get('/:id', function(request, response, next) {
 
 // POST {add post}
 router.post('/', auth.verifyToken, function(request, response, next) {
-    db.connection.query('INSERT INTO posts (author_id, text, title) VALUES ('
-      + request.body.author_id + ', \'' + request.body.text + '\', \'' + request.body.title + '\');', (err, res) => {
+    db.connection.query("INSERT INTO posts (author_id, text, title) VALUES ("
+      + request.body.author_id + ", '" + request.body.text + "', '" + request.body.title + "');", (err, res) => {
       if (err) {
         console.log(err);
         response.sendStatus(500);
