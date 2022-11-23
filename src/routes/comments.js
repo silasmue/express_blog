@@ -42,7 +42,7 @@ router.get('/post/:id', function(request, response, next) {
 });
 
 // POST {add comment} // comment author_id
-router.post('/', auth.verifyToken, jwt({ secret: "secret", algorithms: ["HS256"] }), function(request, response, next) {
+router.post('/', auth.verifyToken, function(request, response, next) {
     db.connection.query('INSERT INTO comments (post_id, author_id, text) VALUES ('
       + request.body.post_id + ', ' + request.body.author_id + ', \'' + request.body.text + '\');', (err, res) => {
       if (err) {
