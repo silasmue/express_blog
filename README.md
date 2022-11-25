@@ -44,3 +44,5 @@ First steps (run all commands in the container, i.e., in the VS Code terminal):
   - Run the command `npm run start`
   - VS Code should automatically forward the web server on the container to your machine (usually port 3000. If it does not work, look it up in VS Code)
   - You can access your website on `localhost:3000` (or another port as mentioned above)
+
+  
